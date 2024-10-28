@@ -24,7 +24,7 @@ interface IFormCheckboxItem {
 
 export interface ITimerConfig {
     enabled: boolean;
-    timeMS?: number;
+    timeSec?: number;
 }
 
 export interface IPagesForm {

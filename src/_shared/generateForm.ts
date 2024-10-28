@@ -4,7 +4,7 @@ export const generateForm = (): IPagesForm => {
     return {
         globalTimer: {
             enabled: true,
-            timeMS: 60,
+            timeSec: 10,
         },
         pages: [
             {

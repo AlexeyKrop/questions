@@ -2,22 +2,70 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .step {
     flex: 1;
-    height: 16px;
-    border-radius: 8px;
-    transition: all 300ms;
-    background-color: #e5e7eb;
+    height: 0.5rem;
+    border-radius: 999px;
+    transition: all 300ms ease-in-out;
+    background-color: #e2e8f0;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+        transform: translateX(0);
+    }
 }
 
 .step.completed {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #64748b;
+    background-image: linear-gradient(
+            to right,
+            #64748b,
+            #475569
+    );
 }
 
 .step.current {
-    background-color: #ef4444;
+    background-color: #3b82f6;
+    background-image: linear-gradient(
+            to right,
+            #3b82f6,
+            #2563eb
+    );
+    box-shadow: 0 1px 3px rgba(59, 130, 246, 0.5);
+    transform: scaleY(1.1);
+}
+
+@keyframes stepProgress {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.step.completed, .step.current {
+    transform-origin: left center;
+    animation: stepProgress 0.4s ease-out forwards;
 }

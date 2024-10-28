@@ -16,10 +16,16 @@ interface IFormFieldProps {
     field: IFormField;
     data?: IFormFieldsStateData | null;
     onFieldChange?: (fieldId: string, value: TFormFieldValue) => void;
+    classNames?: {
+        input?: string;
+        textarea?: string;
+        checkbox?: string;
+        radio?: string;
+    };
 }
 
 export const FormField: FC<IFormFieldProps> = (props) => {
-    const {field, data, onFieldChange} = props;
+    const {field, data, onFieldChange, classNames} = props;
     const {type, radioParams, id, checkboxParams, isMultiValue, required} = field;
 
     const value = getFieldValue(id, data);
@@ -52,6 +58,8 @@ export const FormField: FC<IFormFieldProps> = (props) => {
             const inputProps = {
                 value: inputValue,
                 onChange: changeFieldValueHandler<EFormFieldType.input>,
+                className: classNames?.input,
+                variant: 'unstyled',
             }
             fieldRender = (
                 <>
@@ -76,6 +84,7 @@ export const FormField: FC<IFormFieldProps> = (props) => {
                             onChange: changeFieldValueHandler<EFormFieldType.radio>,
                             name: id,
                             checked: Array.isArray(value) ? value.includes(content) : value === content,
+                            className: classNames?.radio
                         }
                         return (
                             <Radio key={id} {...radioProps}/>
@@ -97,6 +106,7 @@ export const FormField: FC<IFormFieldProps> = (props) => {
                             name: id,
                             checked: Array.isArray(value) ? value.includes(content) : value === content,
                             onChange: changeFieldValueHandler<EFormFieldType.checkbox>,
+                            className: classNames?.checkbox
                         }
                         return (
                             <Checkbox key={id} {...checkboxProps}/>
@@ -112,7 +122,9 @@ export const FormField: FC<IFormFieldProps> = (props) => {
                 value: textareaValue,
                 onChange: changeFieldValueHandler<EFormFieldType.textarea>,
                 autosize: true,
-                minRows: 5,
+                minRows: 1,
+                className: classNames?.textarea,
+                variant: 'unstyled',
             }
             fieldRender = (
                 <>

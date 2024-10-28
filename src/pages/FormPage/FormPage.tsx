@@ -1,5 +1,5 @@
 import {Fragment, useState} from "react";
-import {Alert, Button, Modal} from '@mantine/core';
+import {Button} from '@mantine/core';
 import {useNavigate, useParams} from "react-router";
 import {
     ENavigationDirection, EPages,
@@ -8,7 +8,7 @@ import {
     useFormWithPersistence,
     useNavigationSteps
 } from "../../_shared";
-import {createNavigationSteps, FormField, NavigationSteps, Timer, TIMER_KEY} from "../../components";
+import {createNavigationSteps, CustomModal, FormField, NavigationSteps, Timer, TIMER_KEY} from "../../components";
 
 import style from './FormPage.module.css'
 
@@ -64,7 +64,7 @@ export const FormPage = () => {
                 <h4>Тестирование</h4>
                 {globalTimer?.enabled && (
                     <Timer
-                        initialTime={globalTimer.timeMS ?? 0}
+                        initialTime={globalTimer.timeSec ?? 0}
                         onTimeEnd={changeActivePopup(EFormPagePopup.timerExpiredNotification)}
                     />
                 )}
@@ -74,16 +74,24 @@ export const FormPage = () => {
                 activeStep={active}
             />
             <div className={style.form}>
-                <div>{currentPage?.title}</div>
-                {currentPage?.fields.map((field: IFormField) => (
-                    <Fragment key={field.id}>
-                        <FormField
-                            field={field}
-                            onFieldChange={handleFieldChange}
-                            data={formData}
-                        />
-                    </Fragment>
-                ))}
+                <div className={style.form_title}>{currentPage?.title}</div>
+                <div className={style.form_content}>
+                    {currentPage?.fields.map((field: IFormField) => (
+                        <Fragment key={field.id}>
+                            <FormField
+                                field={field}
+                                onFieldChange={handleFieldChange}
+                                data={formData}
+                                classNames={{
+                                    input: style.input,
+                                    textarea: style.textarea,
+                                    checkbox: style.checkbox,
+                                    radio: style.radio,
+                                }}
+                            />
+                        </Fragment>
+                    ))}
+                </div>
             </div>
             <div className={style.form_action}>
                 <Button disabled={isFirstPage} variant="default"
@@ -95,11 +103,10 @@ export const FormPage = () => {
                     {isLastPage ? 'Отправить' : 'Далее'}
                 </Button>
             </div>
-            <Modal opened={activePopup === EFormPagePopup.timerExpiredNotification} onClose={handleTimerExpired}>
-                <Alert title={'Время теста истекло'}>
-                    Попробуйте заново через несколько часов
-                </Alert>
-            </Modal>
+            <CustomModal
+                isOpen={activePopup === EFormPagePopup.timerExpiredNotification}
+                onClose={handleTimerExpired}
+            />
         </>
     );
 };

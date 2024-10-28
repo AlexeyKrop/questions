@@ -1,10 +1,9 @@
 .required {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 0.875rem;
+    color: #718096;
+    margin-left: 0.5rem;
 }
 
 .required_asterisk {
-    color: rgba(255, 0, 0, 0.5);
-    font-weight: bold;
-    margin-left: 2px;
+    color: #e53e3e;
 }

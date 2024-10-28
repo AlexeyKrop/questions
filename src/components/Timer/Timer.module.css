@@ -1,10 +1,11 @@
 .timer {
-    border: 1px solid rgba(128, 128, 128, 0.6);
-    padding: 10px;
-    border-radius: 4px;
+    border: 0.0625rem solid rgba(128, 128, 128, 0.6);
+    padding: 0.625rem;
+    border-radius: 0.25rem;
     display: inline-block;
     font-family: monospace;
     background-color: #fafafa;
     color: #333;
     font-weight: bold;
+    font-size: 1rem;
 }

@@ -23,7 +23,6 @@ export const StartPage: FC<IStartPageProps> = (props) => {
             {enableTimer &&
                 <p className={style.warning}>
                     После начала тестирования таймер запустится автоматически.
-                    При истечении времени ваши ответы будут сохранены автоматически.
                 </p>
             }
         </div>
