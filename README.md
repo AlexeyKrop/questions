@@ -1,5 +1,3 @@
-# React + TypeScript + Vite Template
-
 ## Features
 
 - React 18+
