@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form_action {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    padding-top: 24px;
+    border-top: 1px solid #e0e0e0;
+}

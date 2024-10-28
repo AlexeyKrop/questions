@@ -1,0 +1,23 @@
+.navigation {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.step {
+    flex: 1;
+    height: 16px;
+    border-radius: 8px;
+    transition: all 300ms;
+    background-color: #e5e7eb;
+}
+
+.step.completed {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.step.current {
+    background-color: #ef4444;
+}

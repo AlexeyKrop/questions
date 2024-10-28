@@ -1,0 +1,10 @@
+.required {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.required_asterisk {
+    color: rgba(255, 0, 0, 0.5);
+    font-weight: bold;
+    margin-left: 2px;
+}
