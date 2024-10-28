@@ -1,15 +1,11 @@
-import {FC} from 'react';
 import {Link} from 'react-router-dom';
+import {generateForm} from "../../_shared";
 
 import style from './StartPage.module.css'
 
 
-interface IStartPageProps {
-    enableTimer?: boolean;
-}
-
-export const StartPage: FC<IStartPageProps> = (props) => {
-    const {enableTimer} = props;
+export const StartPage = () => {
+    const {globalTimer} = generateForm();
     return (
         <div className={style.container}>
             <h1 className={style.title}>Добро пожаловать на тестирование</h1>
@@ -20,7 +16,7 @@ export const StartPage: FC<IStartPageProps> = (props) => {
             <Link to="/test/1" className={style.button}>
                 Начать тестирование
             </Link>
-            {enableTimer &&
+            {globalTimer?.enabled &&
                 <p className={style.warning}>
                     После начала тестирования таймер запустится автоматически.
                 </p>
