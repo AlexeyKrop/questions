@@ -13,7 +13,7 @@ function App() {
                     <Route path={`${EPages.form}/:pageId`} element={<FormPage/>}/>
                     <Route path={`${EPages.form}/${EPages.success}`} element={<SuccessPage/>}/>
                     <Route
-                        path="*"
+                        path={EPages.start}
                         element={<Navigate to={`${EPages.form}/${pages[0].id}`} replace/>}
                     />
                 </Route>
